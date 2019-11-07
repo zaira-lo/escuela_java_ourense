@@ -44,6 +44,11 @@ public class Perro extends Animal{
                 " raza, tiene "+ getEdad() 
                 +" y además es " + this.habitat;
     }
+
+    @Override
+    public void alimentar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

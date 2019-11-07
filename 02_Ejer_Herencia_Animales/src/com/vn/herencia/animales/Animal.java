@@ -53,7 +53,9 @@ public abstract class Animal {
         System.out.println(toString());
     }
     
+    public abstract void alimentar();
     
+           
     
     
 }
