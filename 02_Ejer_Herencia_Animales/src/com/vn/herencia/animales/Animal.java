@@ -44,10 +44,6 @@ public abstract class Animal {
         return habitat;
     }
 
-    public void setHabitat(Habitat habitat) {
-        this.habitat = habitat;
-    }
-
     public String getAlimento() {
         return alimento;
     }
