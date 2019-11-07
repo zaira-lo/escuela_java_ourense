@@ -47,7 +47,13 @@ public abstract class Animal {
         this.habitat = habitat;
     }
     
+    // Aquí va lo de desplazar
     
+    
+   
+    public void mostrarAnimal() {
+        System.out.println(toString());
+    }
     
     
     
