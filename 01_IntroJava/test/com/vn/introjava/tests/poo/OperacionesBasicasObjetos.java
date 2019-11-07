@@ -6,6 +6,10 @@
 package com.vn.introjava.tests.poo;
 
 import com.vn.introjava.poo.Coche;
+import com.vn.introjava.poo.CocheRally;
+import com.vn.introjava.poo.FabricaCoches;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -29,9 +33,17 @@ public class OperacionesBasicasObjetos {
          assertNotNull(miCocheFindes);
          assertNotEquals(miCoche, miCocheFindes);
          
-         // miCoche.marca = '...'; No compila
-         miCoche.setMarca("Kia");
-         miCocheFindes.setMarca("Hammer");
+         try {
+             // miCoche.marca = '...'; No compila
+             miCoche.setMarca("Kia");
+         } catch (Exception ex) {
+             Logger.getLogger(OperacionesBasicasObjetos.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         try {
+             miCocheFindes.setMarca("Hammer");
+         } catch (Exception ex) {
+             Logger.getLogger(OperacionesBasicasObjetos.class.getName()).log(Level.SEVERE, null, ex);
+         }
          System.out.println("miCoche.marca = " + miCoche.getMarca());
          System.out.println("miCocheFindes.marca = " + miCocheFindes.getMarca());
          
@@ -39,22 +51,65 @@ public class OperacionesBasicasObjetos {
          
          miCocheFindes = miCoche;
          assertEquals(miCoche, miCocheFindes);
-         miCoche.setMarca("Hammer Limusina");
+         try {
+             miCoche.setMarca("Hammer Limusina");
+         } catch (Exception ex) {
+             Logger.getLogger(OperacionesBasicasObjetos.class.getName()).log(Level.SEVERE, null, ex);
+         }
          System.out.println("miCoche.marca = " + miCoche.getMarca());
          System.out.println("miCocheFindes.marca = " + miCocheFindes.getMarca());
+        
          
 
 //       Polimorfismo
          Object refAmiCoche = miCoche;
 //         No podemos invocar getMarca(), 
-//          pero si los métodos que tienen todos los objetos
+//         pero si los métodos que tienen todos los objetos
 //         System.out.println("miCocheFindes.marca = " + refAmiCoche.getMarca());
          assertTrue(refAmiCoche.equals(miCoche));
          
-         Coche cocheNuevo = (Coche) refAmiCoche;
-         cocheNuevo.setMarca("Ford");
-         System.out.println("cocheNuevo: " + cocheNuevo.getMarca());
+//         Coche cocheNuevo = (Coche) refAmiCoche;
+//         cocheNuevo.setMarca("Ford");
+//         System.out.println("cocheNuevo: " + cocheNuevo.getMarca());
          
          
      }
+     
+     @Test
+     public void probandoSobrecarga(){
+         Coche nuevoCoche = new Coche();
+         assertTrue(nuevoCoche.arrancar());
+         
+         for(int i= 1; i <= 4; i++){
+             if( i == 4){
+                 assertTrue(nuevoCoche.arrancar(i));
+             }else{
+                 assertFalse(nuevoCoche.arrancar(i));
+             }
+         }         
+     }
+     
+     
+     @Test(expected = IllegalArgumentException.class)
+     public void gestionExcepciones() throws Exception{
+         Coche c = FabricaCoches.crear("");
+     }
+     
+     @Test//(expected = IllegalArgumentException.class)
+     public void gestionExcepciones_2(){
+         try {
+             Coche c = FabricaCoches.crear("c");
+         } catch (Exception ex) {
+             Logger.getLogger(OperacionesBasicasObjetos.class.getName()).log(Level.SEVERE, null, ex);
+             assertTrue(ex instanceof IllegalArgumentException);
+         }
+     }
+     
+     @Test
+     public void usandoConstructoresSobrecargados(){
+         Coche c = new Coche("Ferrari");
+         assertEquals(c.getMarca(), "Ferrari");
+     }
+     
+    
 }
