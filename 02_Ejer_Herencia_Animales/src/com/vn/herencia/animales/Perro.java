@@ -18,6 +18,7 @@ public class Perro extends Animal{
         this.edad = 3;
         this.nombre = "toby";
         this.habitat = Habitat.Terrestre;
+        this.alimento = "pienso";
     }
 
     public String getRaza() {
@@ -47,7 +48,7 @@ public class Perro extends Animal{
 
     @Override
     public void alimentar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         System.out.println(getNombre() + " mastica y come " + getAlimento());
     }
     
     

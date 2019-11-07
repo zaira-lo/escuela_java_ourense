@@ -10,8 +10,6 @@ package com.vn.herencia.animales;
  * @author pc
  */
 public class Percebe extends Animal {
-    
-    private String alimento;
 
     public Percebe() {
         super(); //Con esto consigo las propiedades del padre(Animal)
@@ -20,14 +18,6 @@ public class Percebe extends Animal {
         this.nombre = "Percebe";
         this.peso = 1; 
         this.alimento = "placton";
-    }
-
-    public String getAlimento() {
-        return alimento;
-    }
-
-    public void setAlimento(String alimento) {
-        this.alimento = alimento;
     }
 
 

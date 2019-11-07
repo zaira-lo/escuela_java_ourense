@@ -14,6 +14,7 @@ public abstract class Animal {
     protected int edad;
     protected int peso;
     protected Habitat habitat;
+    protected String alimento;
 
     public String getNombre() {
         return nombre;
@@ -46,6 +47,16 @@ public abstract class Animal {
     public void setHabitat(Habitat habitat) {
         this.habitat = habitat;
     }
+
+    public String getAlimento() {
+        return alimento;
+    }
+
+    public void setAlimento(String alimento) {
+        this.alimento = alimento;
+    }
+    
+    
 
     public abstract void desplazar();
 
