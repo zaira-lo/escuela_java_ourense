@@ -23,7 +23,7 @@ public class Percebe extends Animal {
 
     @Override
     public void desplazar() {
-        System.out.println(getNombre() + "No se desplazan, están adheridos a una roca.");    
+        System.out.println(getNombre() + " no se desplazan, están adheridos a una roca.");    
     }
     
     @Override
