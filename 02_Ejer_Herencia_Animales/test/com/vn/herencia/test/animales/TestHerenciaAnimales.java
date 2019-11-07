@@ -5,6 +5,9 @@
  */
 package com.vn.herencia.test.animales;
 
+import com.vn.herencia.animales.Animal;
+import com.vn.herencia.animales.Percebe;
+import com.vn.herencia.animales.Perro;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,9 +30,12 @@ public class TestHerenciaAnimales {
     public void setUp() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+   
+    @Test
+    public void hello() {
+    
+        Animal perrito = new Perro("Cocker");
+        Animal percebito = new Percebe();
+        
+    }
 }
