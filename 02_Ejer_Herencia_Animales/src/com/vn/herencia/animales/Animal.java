@@ -46,10 +46,12 @@ public abstract class Animal {
     public void setHabitat(Habitat habitat) {
         this.habitat = habitat;
     }
-    
+
     public abstract void desplazar();
-    
-    
+
+    public void mostrarAnimal() {
+        System.out.println(toString());
+    }
     
     
     
