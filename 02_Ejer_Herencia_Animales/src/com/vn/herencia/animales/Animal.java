@@ -47,6 +47,8 @@ public abstract class Animal {
         this.habitat = habitat;
     }
     
+    public abstract void desplazar();
+    
     
     
     
