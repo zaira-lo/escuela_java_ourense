@@ -5,10 +5,14 @@
  */
 package com.vn.herencia.animales;
 
-/**
+/**Enumerado de los tipos de habitat.
  *
  * @author pc
  */
-public class Habitat {
+public enum Habitat {
     
+    No_definido,
+    Acuatico,
+    Terrestre,
+    Anfibio
 }
