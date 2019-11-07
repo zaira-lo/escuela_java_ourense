@@ -28,5 +28,7 @@ public abstract class Vehiculo {
     
     //al no tener implementacion tiene que ser abstract
     public abstract void avanzar(); 
-    public abstract void mostrarEstado();
+    public void mostrarEstado(){
+        System.out.println(toString());
+    }
 }

@@ -23,10 +23,14 @@ public class Tractor extends Vehiculo {
         System.out.println("Ruedo y siego.");
     }
 
+    
     @Override
-    public void mostrarEstado() {
-        System.out.println(tipo);
+    public String toString(){
+        return tipo.toString();
+        
     }
+    
+   
 
     
     
