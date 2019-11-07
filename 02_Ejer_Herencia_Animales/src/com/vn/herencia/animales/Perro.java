@@ -39,7 +39,10 @@ public class Perro extends Animal{
 
     @Override
     public String toString() {
-        return "Perro{" + "raza=" + raza + '}';
+        return getNombre() + "Es un perro" 
+                +  " que tiene " + raza + 
+                " raza, tiene "+ getEdad() 
+                +" y además es " + this.habitat;
     }
     
     
