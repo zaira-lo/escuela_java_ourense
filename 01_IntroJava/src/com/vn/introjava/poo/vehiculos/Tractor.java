@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vn.introjava.poo;
+package com.vn.introjava.poo.vehiculos;
+
+import com.vn.introjava.poo.vehiculos.TipoVehiculo;
 
 
 /**
@@ -28,6 +30,17 @@ public class Tractor extends Vehiculo {
     public String toString(){
         return tipo.toString();
         
+    }
+
+    @Override
+    public void mover(float metros) {
+        avanzar();
+        System.out.println(metros + " metros");
+    }
+
+    @Override
+    public void cargarBateria(double voltios) {
+        System.out.println("El coche tiene " + voltios);
     }
     
    

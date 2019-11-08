@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vn.introjava.poo;
+package com.vn.introjava.poo.vehiculos;
+
+import com.vn.introjava.poo.vehiculos.Coche;
 
 /** Clase CocheRally para controlar otras caracteristicas
  * especificas de los rallies
