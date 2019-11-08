@@ -19,10 +19,11 @@ public class Perro extends Animal{
         this.nombre = "toby";
         this.habitat = Habitat.Terrestre;
         this.alimento = "pienso";
+        this.peso = 4;
     }
 
     public Perro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
     }
 
     public String getRaza() {
@@ -38,16 +39,16 @@ public class Perro extends Animal{
         System.out.println(getNombre() + " corre contento");
     }
     
-    public void ladrar(){
-        System.out.println(getNombre() + " dice guau guau");
+    public String ladrar(){
+        return (getNombre() + " dice guau guau");
     }
 
     @Override
     public String toString() {
-        return getNombre() + "Es un perro" 
-                +  " que tiene " + raza + 
-                " raza, tiene "+ getEdad() 
-                +" y además es " + this.habitat;
+        return getNombre() + " es un perro de raza " 
+                + raza + ", tiene "+ getEdad() 
+                +" años, pesa "  + this.peso +" kg, y además es " + this.habitat +
+                ". " + ladrar();
     }
 
     @Override

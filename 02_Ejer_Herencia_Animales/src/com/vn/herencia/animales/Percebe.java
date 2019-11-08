@@ -30,6 +30,15 @@ public class Percebe extends Animal {
     public void alimentar(){
         System.out.println(getNombre() + " se nutre de " + getAlimento());
     }
+
+    @Override
+    public String toString() {
+        return getNombre() + " es de tipo" + this.habitat
+                + " tiene " + this.edad + " años y pesa "
+                + this.peso +  " kg";
+    }
+    
+    
     
     
     

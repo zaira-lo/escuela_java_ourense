@@ -32,10 +32,26 @@ public class TestHerenciaAnimales {
 
    
     @Test
-    public void hello() {
+    public void testClases() {
     
         Animal perrito = new Perro("Cocker");
         Animal percebito = new Percebe();
+        
+        assertEquals(((Perro)perrito).getRaza(), "Cocker");
+        
+        Animal [] misAnimales = new Animal []{
+            perrito,
+            percebito
+        };
+        
+        System.out.println("***LISTA DE ANIMALES");
+        for(Animal miAnimal : misAnimales){
+            miAnimal.desplazar();
+            miAnimal.alimentar();
+            miAnimal.mostrarAnimal();
+        }
+        
+        System.out.println("***FIN LISTA");
         
     }
 }
