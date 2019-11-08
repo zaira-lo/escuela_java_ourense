@@ -12,7 +12,7 @@ package com.vn.herencia.animales;
 public abstract class Animal {
     protected String nombre;
     protected int edad;
-    protected int peso;
+    protected float peso;
     protected Habitat habitat;
     protected String alimento;
 
@@ -32,11 +32,11 @@ public abstract class Animal {
         this.edad = edad;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
 
@@ -60,7 +60,7 @@ public abstract class Animal {
         System.out.println(toString());
     }
     
-    public abstract void alimentar();
+    public abstract void alimentar(String alimento);
     
            
     

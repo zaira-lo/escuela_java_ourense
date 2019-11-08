@@ -34,20 +34,22 @@ public class TestHerenciaAnimales {
     @Test
     public void testClases() {
     
-        Animal perrito = new Perro("Cocker");
-        Animal percebito = new Percebe();
+        Animal perrito = new Perro("Cocker", 3, "Toby", "pienso de cordero", 3.4f);
+        Animal percebito = new Percebe(4, "Percebito", 0.2f, "pacton");
         
         assertEquals(((Perro)perrito).getRaza(), "Cocker");
         
         Animal [] misAnimales = new Animal []{
             perrito,
-            percebito
+            percebito,
+            new Perro ("Mastin", 5, "Niebla", "Cordero", 20.7f),
+            new Percebe (1, "Percebeiso", 0.1f, "almejas")
         };
         
         System.out.println("***LISTA DE ANIMALES");
         for(Animal miAnimal : misAnimales){
             miAnimal.desplazar();
-            miAnimal.alimentar();
+            miAnimal.alimentar(miAnimal.getAlimento());
             miAnimal.mostrarAnimal();
         }
         

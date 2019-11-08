@@ -11,13 +11,13 @@ package com.vn.herencia.animales;
  */
 public class Percebe extends Animal {
 
-    public Percebe() {
+    public Percebe(int edad, String nombre, float peso, String alimento) {
         super(); //Con esto consigo las propiedades del padre(Animal)
         this.habitat = Habitat.Acuatico;
-        this.edad = 3;
-        this.nombre = "Percebe";
-        this.peso = 1; 
-        this.alimento = "placton";
+        this.edad = edad;
+        this.nombre = nombre;
+        this.peso = peso; 
+        this.alimento = alimento;
     }
 
 
@@ -27,13 +27,13 @@ public class Percebe extends Animal {
     }
     
     @Override
-    public void alimentar(){
-        System.out.println(getNombre() + " se nutre de " + getAlimento());
+    public void alimentar(String alimento){
+        System.out.println(getNombre() + " se nutre de " + this.alimento);
     }
 
     @Override
     public String toString() {
-        return getNombre() + " es de tipo" + this.habitat
+        return getNombre() + " es de tipo " + this.habitat
                 + " tiene " + this.edad + " años y pesa "
                 + this.peso +  " kg";
     }

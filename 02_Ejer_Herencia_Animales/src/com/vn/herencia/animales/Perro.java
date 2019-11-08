@@ -12,14 +12,14 @@ package com.vn.herencia.animales;
 public class Perro extends Animal{
     private String raza;
 
-    public Perro(String raza) {
+    public Perro(String raza, int edad, String nombre, String alimento, float peso ) {
         super();
         this.raza = raza;
-        this.edad = 3;
-        this.nombre = "toby";
+        this.edad = edad;
+        this.nombre = nombre;
         this.habitat = Habitat.Terrestre;
-        this.alimento = "pienso";
-        this.peso = 4;
+        this.alimento = alimento;
+        this.peso = peso;
     }
 
     public Perro() {
@@ -52,8 +52,8 @@ public class Perro extends Animal{
     }
 
     @Override
-    public void alimentar() {
-         System.out.println(getNombre() + " mastica y come " + getAlimento());
+    public void alimentar(String alimento) {
+         System.out.println(getNombre() + " mastica y come " + this.alimento);
     }
     
     
