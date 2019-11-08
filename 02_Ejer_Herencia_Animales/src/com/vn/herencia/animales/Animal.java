@@ -10,11 +10,11 @@ package com.vn.herencia.animales;
  * @author pc
  */
 public abstract class Animal {
-    protected String nombre;
-    protected int edad;
-    protected float peso;
+    private String nombre;
+    private int edad;
+    private float peso;
     protected Habitat habitat;
-    protected String alimento;
+    private String alimento;
 
     public String getNombre() {
         return nombre;
@@ -51,8 +51,6 @@ public abstract class Animal {
     public void setAlimento(String alimento) {
         this.alimento = alimento;
     }
-    
-    
 
     public abstract void desplazar();
 
