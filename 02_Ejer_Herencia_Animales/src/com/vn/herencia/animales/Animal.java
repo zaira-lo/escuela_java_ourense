@@ -10,11 +10,23 @@ package com.vn.herencia.animales;
  * @author pc
  */
 public abstract class Animal {
-    private String nombre;
-    private int edad;
-    private float peso;
+    protected String nombre;
+    protected int edad;
+    
+    /**
+     * Se tienen que validar los valores (no acepta numeros negativos
+     *se mide en kg con precision en gramos
+     * 
+     */
+    protected float peso;
+
+    /**
+     *Es un enum para especificar el habitat del animal
+     * puede ser no_definido, acuatico, terrestre o anfibio
+     * 
+     */
     protected Habitat habitat;
-    private String alimento;
+    protected String alimento;
 
     public String getNombre() {
         return nombre;
@@ -52,12 +64,23 @@ public abstract class Animal {
         this.alimento = alimento;
     }
 
+    /**
+     *Indica la forma de desplazamiento del animal por un String
+     * 
+     */
     public abstract void desplazar();
 
     public void mostrarAnimal() {
         System.out.println(toString());
     }
     
+    /**
+     *
+     * @param alimento
+     * 
+     * Indica la manera de alimentar del animal 
+     * pasando el alimento por parámentros
+     */
     public abstract void alimentar(String alimento);
     
            

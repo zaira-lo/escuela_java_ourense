@@ -11,6 +11,13 @@ package com.vn.herencia.animales;
  */
 public class Percebe extends Animal {
 
+    /**
+     *
+     * @param edad
+     * @param nombre
+     * @param peso
+     * @param alimento
+     */
     public Percebe(int edad, String nombre, float peso, String alimento) {
         super(); //Con esto consigo las propiedades del padre(Animal)
         this.habitat = Habitat.Acuatico;
@@ -20,7 +27,11 @@ public class Percebe extends Animal {
         this.alimento = alimento;
     }
 
-
+    /**
+     * No es necesario utilizar esta función en esta clase
+     * ya que realmente no se desplaza, 
+     * aunque se puede añadir
+     */
     @Override
     public void desplazar() {
         System.out.println(getNombre() + " no se desplazan, están adheridos a una roca.");    

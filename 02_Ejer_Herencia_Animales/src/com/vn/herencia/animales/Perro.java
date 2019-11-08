@@ -34,6 +34,10 @@ public class Perro extends Animal{
         this.raza = raza;
     }
     
+    
+    /**
+     * define la forma de desplazamiento del perro con un String
+     */
     @Override
     public void desplazar(){
         System.out.println(getNombre() + " corre contento");
