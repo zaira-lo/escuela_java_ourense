@@ -13,10 +13,20 @@ import com.vn.introjava.poo.vehiculos.TipoVehiculo;
  * @author pc
  */
 public class Tractor extends Vehiculo {
+    private String color;
 
     public Tractor() {
         super();
         tipo = TipoVehiculo.TRACTOR;
+        this.color = "amarillo";
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     
@@ -38,12 +48,7 @@ public class Tractor extends Vehiculo {
         System.out.println(metros + " metros");
     }
 
-    @Override
-    public void cargarBateria(double voltios) {
-        System.out.println("El coche tiene " + voltios);
-    }
-    
-   
+  
 
     
     
