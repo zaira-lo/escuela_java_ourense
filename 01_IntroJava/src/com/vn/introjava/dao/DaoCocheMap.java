@@ -10,6 +10,7 @@ import com.vn.introjava.poo.vehiculos.Coche;
 import com.vn.introjava.poo.vehiculos.FabricaCoches;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import static javafx.scene.input.KeyCode.K;
 import static javafx.scene.input.KeyCode.T;
 
@@ -30,16 +31,16 @@ public class DaoCocheMap implements IDaoCoche{
         ultimoIndex = 0;
     }
 
-    public void crear(String marca) throws Exception{
-        crear(FabricaCoches.crear(marca));
+    public Coche crear(String marca) throws Exception{
+        return crear(FabricaCoches.crear(marca));
     }
     
     @Override
-    public void crear(Coche nuevoCoche) throws Exception {
+    public Coche crear(Coche nuevoCoche) throws Exception {
         mapaStr.put(nuevoCoche.getMarca(), nuevoCoche);
-        mapaInt.put(ultimoIndex, mapaStr.get(nuevoCoche.getMarca()));
+        mapaInt.put(ultimoIndex, nuevoCoche);
         ultimoIndex++;
-               
+        return nuevoCoche;
     }
 
     @Override
@@ -53,8 +54,40 @@ public class DaoCocheMap implements IDaoCoche{
     }
 
     @Override
-    public void modificar(int index, Coche objExistente) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Coche modificar(int index, Coche cocheDatos) throws Exception {
+        Coche c = obtenerPorIndice(index);
+        mapaStr.remove(c.getMarca());
+        mapaStr.put(cocheDatos.getMarca(), c);
+        
+        c.setMarca(cocheDatos.getMarca());
+        c.setTipo(cocheDatos.getTipo());
+        c.arrancar(cocheDatos.isArrancado() ? 4 : 1);
+        return c;
+    }
+
+
+    @Override
+    public void eliminar(Coche objEliminar) {
+        String keyMarca = objEliminar.getMarca();
+        mapaStr.remove(keyMarca);
+        int keyIndex = -1;
+        
+        if(mapaInt.containsValue(objEliminar)){
+            for (Map.Entry<Integer, Coche> parIndexYcoche : mapaInt.entrySet()) {
+                if(parIndexYcoche.getValue()== objEliminar){
+                    keyIndex = parIndexYcoche.getKey();
+                }
+            }
+        }
+        mapaInt.remove(keyIndex);
+    }
+
+    
+    @Override
+    public void eliminar(int index) {
+        Coche c = mapaInt.get(index);
+        mapaStr.remove(c.getMarca());
+        mapaInt.remove(index);
     }
 
 }

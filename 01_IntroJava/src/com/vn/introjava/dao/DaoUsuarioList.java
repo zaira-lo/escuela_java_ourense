@@ -20,8 +20,13 @@ public class DaoUsuarioList implements IDaoUsuario{
     }
 
     @Override
-    public void crear(Usuario nuevoUsuario) {
-        listaUsuarios.add(nuevoUsuario);
+    public Usuario crear(Usuario nuevoUsuario) throws Exception {
+        listaUsuarios.add(nuevoUsuario);	
+        return nuevoUsuario;
+    }
+    
+    public Usuario crear (String nom, int edad) throws Exception{
+        return crear(new Usuario(nom, edad));
     }
 
     @Override
@@ -40,10 +45,21 @@ public class DaoUsuarioList implements IDaoUsuario{
     }
 
     @Override
-    public void modificar(int index, Usuario objExistente) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario modificar(int index, Usuario usuarioConDatos) throws Exception {
+        Usuario usuarioAModificar = listaUsuarios.get(index);
+        usuarioAModificar.setEdad(usuarioConDatos.getEdad());
+        usuarioAModificar.setNombre(usuarioConDatos.getNombre());
+        return usuarioAModificar;
     }
 
-  
-    
+    @Override
+    public void eliminar(int index) {
+        this.listaUsuarios.remove(index);
+    }
+
+    @Override
+    public void eliminar(Usuario objEliminar) {
+       this.listaUsuarios.remove(objEliminar);
+    }
+
 }

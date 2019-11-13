@@ -13,10 +13,6 @@ import com.vn.introjava.dao.Usuario;
  * @author pc
  */
 public interface IDaoUsuario extends IGenericDao<Usuario>{
-    @Override
-    void crear( Usuario nuevoUsuario);
-    @Override
-    Usuario obtenerPorIndice(int edad);
-    Usuario obtenerPorNombre(String nombre);
+    public Usuario obtenerPorNombre(String nombre);
     
 }

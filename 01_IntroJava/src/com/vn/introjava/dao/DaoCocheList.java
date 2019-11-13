@@ -21,14 +21,23 @@ public class DaoCocheList implements IDaoCoche{
         listaCoches = new ArrayList<>();
     }
     
+    public Coche crear (String marca) throws Exception{
+        return crear(FabricaCoches.crear(marca));
+    }
+    
     @Override
-    public void crear(Coche nuevoCoche) throws Exception{
-        listaCoches.add(nuevoCoche);
+    public Coche crear(Coche nuevoCoche) throws Exception{      
+       listaCoches.add(nuevoCoche);
+        return  nuevoCoche;
     }
     
     @Override
     public Coche obtenerPorIndice (int index){
-        return listaCoches.get(index);
+        if(index < listaCoches.size()){
+            return listaCoches.get(index);
+        }else{
+            return null;
+        }
     }
     
     @Override
@@ -42,8 +51,22 @@ public class DaoCocheList implements IDaoCoche{
     }
 
     @Override
-    public void modificar(int index, Coche objExistente) throws Exception {
-        listaCoches.get(index);
+    public Coche modificar(int index, Coche cocheConDatos) throws Exception {
+        Coche cocheAModificar = listaCoches.get(index);
+        cocheAModificar.setMarca(cocheConDatos.getMarca());
+        cocheAModificar.setTipo(cocheConDatos.getTipo());
+        cocheAModificar.arrancar(cocheConDatos.isArrancado() ? 4 : 1);
+        return cocheAModificar;
+    }
+
+    @Override
+    public void eliminar(int index) {
+        this.listaCoches.remove(index);
+    }
+
+    @Override
+    public void eliminar(Coche objEliminar) {
+        this.listaCoches.remove(objEliminar);
     }
 
 }

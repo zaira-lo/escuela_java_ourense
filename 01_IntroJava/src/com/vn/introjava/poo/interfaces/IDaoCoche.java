@@ -7,6 +7,7 @@ package com.vn.introjava.poo.interfaces;
 
 import com.vn.introjava.dao.IGenericDao;
 import com.vn.introjava.poo.vehiculos.Coche;
+import static javafx.scene.input.KeyCode.T;
 
 /**
  *
@@ -14,9 +15,14 @@ import com.vn.introjava.poo.vehiculos.Coche;
  */
 public interface IDaoCoche extends IGenericDao<Coche>{
     @Override
-    void crear(Coche nuevoCoche) throws Exception;
+    Coche crear(Coche nuevoCoche) throws Exception;
+    Coche crear(String marca) throws Exception;
     @Override
     Coche obtenerPorIndice(int index);
     Coche obtenerPorMarca(String marca);
+    @Override
+    Coche modificar (int index, Coche objExistente) throws Exception;
+    @Override
+    void eliminar(int index);
     
 }

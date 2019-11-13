@@ -16,8 +16,8 @@ public class Usuario {
     private int edad;
 
     public Usuario(String nombre, int edad) {
-        this.nombre = "Sin nombre";
-        this.edad = 5;
+        this.nombre = nombre;
+        this.edad = edad;
     }
     
     
