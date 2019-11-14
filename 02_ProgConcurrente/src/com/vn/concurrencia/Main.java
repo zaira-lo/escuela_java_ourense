@@ -15,15 +15,19 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        HilosSencillos hs = new HilosSencillos();
-        long timeIni = System.currentTimeMillis();
-        hs.ejecutarHilosRunABenSerie();
-        
-        String m1 = mostrarTiempo(timeIni, "Run en Serie ha tardado: ");
-        timeIni = System.currentTimeMillis();
-        hs.ejecutarHilosStartABenParalelo();
-        mostrarTiempo(timeIni, "Start en paralelo ha tardado: ");
-        System.out.println(m1);
+//        HilosSencillos hs = new HilosSencillos();
+//        long timeIni = System.currentTimeMillis();
+//        hs.ejecutarHilosRunABenSerie();
+//        
+//        String m1 = mostrarTiempo(timeIni, "Run en Serie ha tardado: ");
+//        timeIni = System.currentTimeMillis();
+//        hs.ejecutarHilosStartABenParalelo();
+//        mostrarTiempo(timeIni, "Start en paralelo ha tardado: ");
+//        System.out.println(m1);
+
+          ArrayListHilos ah = new ArrayListHilos(5);
+          ah.ejecutarHilosRunABenSerie();
+          ah.ejecutarHilosStartABenParalelo();
         
     }
     static String mostrarTiempo(  long timeInicial, String mensaje){
