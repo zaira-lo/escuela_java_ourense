@@ -5,11 +5,14 @@
  */
 package com.vn.concurrencia.sincronia;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author pc
  */
-public class Productor {
+public class Productor extends Thread{
 
     private Contenedor contenedor;
 
@@ -17,11 +20,20 @@ public class Productor {
         contenedor = c;
     }
 
-    public void producir() {
-        
-        int i = 9;
-        contenedor.put(i);
-        
-        System.out.println("Productor. PUT: " + i);
+    @Override
+    public void run() {
+       
+        for (int i = 10; i >= 1; i--) {
+            int value= i*5;
+            System.out.println("    Productor. PUT: " + value);
+            contenedor.put(value);
+            System.out.println(">>>>Productor. PUT: " + value);
+            try {
+                Thread.sleep((int)(Math.random()*1000));
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }        
+
     }
 }
