@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formularios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="container">
+        <div class="offset-3 col-md-6">
+            <h1 class="offset-1 col-12">Formularios HTML5:</h1>
+            <div class="contact-clean">
+                <form id="form_registro" name="form-registro" action="#" method="GET">
+                    <fieldset class="form-group">
+                        <legend>Formularios</legend>
+                        <div class="form-group">
+                            <label >Nombre: </label>
+                            <input class="form-control" id="nombre" name="nombre" maxlength="15" required/>
+                        </div>
+                        <div class="form-group">
+                            <label >Apellidos:</label>
+                            <input class="form-control" id="apellidos" name="apellidos" value="valor por defecto"
+                                maxlength="15" required/>
+                        </div>
+                        <div class="form-group">
+                            <label >Email:</label>
+                            <input class="form-control" id="email" name="email" placeholder="Introduzca email válido"
+                                maxlength="15" type="email" required/>
+                        </div>
+                        <div class="form-group">
+                            <label >Edad: </label>
+                            <input class="form-control" type="number" id="edad" name="edad" 
+                                placeholder="Añade la edad en nº" />
+                        </div>
+                        <div class="form-group">
+                            <label >Fecha: </label>
+                            <input class="form-control" type="date" id="fecha" name="fecha"  />
+                        </div>
+                        <div class="form-group">
+                            <input type="reset" value="Limpiar" class="btn btn-info col-md-3" />
+                            <input type="button" value="Rellenar"
+                                onclick="document.forms.form_registro.nombre.value='Fulano'" 
+                                class="btn btn-warning col-md-3"/>
+                            <input type="submit" value="Enviar" class="btn btn-success col-md-3"/>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
