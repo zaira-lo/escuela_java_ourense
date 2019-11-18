@@ -39,13 +39,14 @@ section {
 }
 
 .titulo {
-    position: absolute;
     top: 6%;
     right: 29%;
     font-size: 10em;
+    display: inline;
 }
 
 #logo {
     width: 26%;
     margin-left: 5%;
+    display: inline;
 }
