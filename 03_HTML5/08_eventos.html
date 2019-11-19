@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="componente_evento">
+        <label>Evento con listener</label>
+        <input id="input_listo" size=100/>
+        <input id="btn_listo" type="button"/>
+        <div id="info_evento"></div>
+    </div>
+    <div id="componente_evento_otro">
+        <label>Evento con listener_2</label>
+        <input id="input_otro" size=100/>
+        <input id="btn_otro" type="button"/>
+        <div id="info_evento_otro"></div>
+    </div>
+    <script>
+        
+        function gestorEvent(inputId, btnId, divId){
+            let numDiv = document.getElementsByTagName("div").length;
+            let divIdPadre = "";
+            for(let i=0; i< numDiv; i++){
+                if(document.getElementsByTagName("div")[i].id.indexOf("componente_")!= -1){
+                    divIdPadre= document.getElementsByTagName("div")[i].id;
+                }
+            }
+            var numHijos = document.getElementById(divIdPadre).children.length;
+            var inputId = "";
+            var btnId= "";
+            var divId="";
+            for (let i = 0; i < numHijos; i++) {
+                if(document.getElementById(divIdPadre).children[i].id.indexOf("input_") != -1){
+                    inputId= document.getElementById(divIdPadre).children[i].id;
+                }else if(document.getElementById(divIdPadre).children[i].id.indexOf("btn_") != -1){
+                    btnId = document.getElementById(divIdPadre).children[i].id;
+                }else if(document.getElementById(divIdPadre).children[i].id.indexOf("info_evento_") != -1){
+                    divId= document.getElementById(divIdPadre).children[i].id;
+                }
+            }  
+            let input = document.getElementById(inputId);
+            let btn = document.getElementById(btnId);
+            btn.value ="Botoncito";
+            btn.addEventListener("click", funCallbkAlpulsar);
+            btn.addEventListener("click", funCallbkAlpulsar_Dos);  
+
+            function funCallbkAlpulsar (evento){
+                input.value="Tipo de evento: " + evento.type;
+                let info_evento = document.getElementById(divId);
+                evento.currentTarget.value = "Puedes repetir";
+                info_evento.innerHTML += "evento.currentTarget.id= "+ evento.currentTarget.id;
+                this.removeEventListener("click", funCallbkAlpulsar);//es la forma de que solo se pueda pulsar una vez
+
+            }
+            function funCallbkAlpulsar_Dos(evento){
+                document.getElementsByTagName("body")[0].className = "fondo_body";
+            }
+            var gestE = new gestorEvent(inputId, btnId, divId);
+        }
+
+        
+    </script>
+    <style>
+        .fondo_body{
+            background-color: aquamarine;
+        }
+    </style>
+</body>
+</html>
