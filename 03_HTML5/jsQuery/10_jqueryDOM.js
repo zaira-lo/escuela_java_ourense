@@ -4,17 +4,24 @@ $(document).ready(function(){
     $('.articulo').append('<p>UN PÁRRAFO EN CADA ELEMENTO CON CLASS articulo</p>');
     $('td:nth-child(5)').attr('style', 'background-color: blue; color: white');
     $('td:nth-child(5)').click(()=> {alert('un click desde jQ')});
-    $('#otro_menu').append('<p>.....</p><br/><br/>');
-    $('#otro_menu').click(function(){
-        $(this).slideUp();
+    $('#otro_menu').html('<h2>Menú de artículos</h2><br/><br/>');
+    
+    $('article').hide();
+    var articuloActivo
+    $('article').each( function(index){
+        let idArticulo= "articulo_213_"+index;
+        $(this).attr("id", idArticulo);
+        $('#otro_menu').append("<a class='enlacesMenu2' id='enlaceMenu2_"+index+"'>Articulo "+ index+"</a>");    
+        $('#enlaceMenu2_'+index).click(function(){
+            if(typeof(articuloActivo)==="undefined"){
+                $("#"+ idArticulo).show( 2000 );
+            }else{
+                $(articuloActivo).slideUp(800, function(){
+                    $("#"+ idArticulo).show( 2000 );
+                });
+            }
+            articuloActivo = $("#"+ idArticulo)
+        });
     });
-
-    $('h2').append('<button id="shower">Mostrar</button>');
-    $('h2').append('<button id="hider">Ocultar</button>');
-    $( "#hider" ).click(function() {
-        $('.articulo').slideUp()});
-      $( "#shower" ).click(function() {
-        $( ".articulo" ).show( 2000 );
-    });
-
+    
 });
