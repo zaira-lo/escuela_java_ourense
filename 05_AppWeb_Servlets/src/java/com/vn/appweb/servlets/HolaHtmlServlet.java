@@ -48,9 +48,6 @@ public class HolaHtmlServlet extends HttpServlet{
             salida.print("</body>");
             salida.print("</html>");
        }
-       
-       
-       
    }
     
 }
