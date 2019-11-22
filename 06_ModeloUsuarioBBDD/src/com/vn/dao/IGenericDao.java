@@ -9,6 +9,7 @@ package com.vn.dao;
  *
  * @author Equipo 13
  */
-public interface IGenericDao {
+public interface IGenericDao<T> {
+    public abstract T crear(T objetoNuevo) throws Exception;
     
 }
