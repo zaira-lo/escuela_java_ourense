@@ -12,4 +12,11 @@ package com.vn.dao;
 public interface IGenericDao<T> {
     public abstract T crear(T objetoNuevo) throws Exception;
     
-}
+    T obtenerPorIndice(int index);
+    
+    T modificar(int index, T objConDatosNuevo)throws Exception;
+    
+    void eliminar(int index);
+    void eliminar(T objConDatosNuevo);
+    
+}  
