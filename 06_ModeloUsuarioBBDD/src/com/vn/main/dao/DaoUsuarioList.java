@@ -5,6 +5,7 @@
  */
 package com.vn.main.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,10 +15,9 @@ import java.util.List;
 public class DaoUsuarioList implements IDaoUsuario{
     
     private List<Usuario> listaUsuario;
-
-    @Override
-    public Usuario obtenerPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public DaoUsuarioList () {
+        listaUsuario = new ArrayList<>();
     }
 
     @Override
@@ -31,8 +31,8 @@ public class DaoUsuarioList implements IDaoUsuario{
     }
 
     @Override
-    public Usuario obtenerPorIndice(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario obtenerPorIndice(int id) {
+        return listaUsuario.get(id);
     }
 
     @Override

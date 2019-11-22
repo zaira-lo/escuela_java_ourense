@@ -11,7 +11,5 @@ package com.vn.main.dao;
  */
 public interface IDaoUsuario extends IGenericDao<Usuario>{
     
-    public Usuario obtenerPorId(int id);
-    
     public Usuario obtenerPorEmail(String email);
 }
