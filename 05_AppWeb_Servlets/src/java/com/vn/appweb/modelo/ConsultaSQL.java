@@ -37,7 +37,7 @@ public class ConsultaSQL {
         try(Connection con = DriverManager.getConnection(
                     "jdbc:derby://localhost:1527/db_prueba", 
                     "root", "1234")){
-                
+              
                 String sqlyQuery ="SELECT nombre, email FROM persona WHERE UPPER(TRIM(nombre)) LIKE ? ESCAPE '!'";
                 //sentencia preparada para evitar SQL injection
                 PreparedStatement sentenciaSQL = con.prepareStatement(sqlyQuery);

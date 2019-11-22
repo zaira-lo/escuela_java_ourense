@@ -16,11 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author pc
  */
-public class TestConsultaDatosPersona {
-    
+public class TestConsultaDatosPersona {   
     public TestConsultaDatosPersona() {
     }
-
      @Test
      public void testSelectSQL() {
          ConsultaSQL conSQL = new ConsultaSQL();

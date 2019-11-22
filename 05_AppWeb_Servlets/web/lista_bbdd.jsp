@@ -33,22 +33,19 @@
         <form name="formBusq" method="GET" action="lista_bbdd.jsp">
             <input name="nombre_busq" type="text" placeholder="Introduzca busqueda..."/>
             <input type="submit" value="Buscar"/>
-        </form>
-        
+        </form>       
         <table>
             <tr>
                 <th>Nombre</th>
                 <th>Email</th>
-            </tr>
-            
+            </tr>        
           <%
             for (DatosPersonales dp :listaPer) {%>
             <tr>
                 <td><%= dp.getNombre() %></td>
                 <td><%= dp.getEmail() %></td>
              </tr>
-            <% }%>
-            
+            <% }%>         
         </table>
     </body>
 </html>
