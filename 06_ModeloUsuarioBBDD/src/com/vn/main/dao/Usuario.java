@@ -22,7 +22,7 @@ public class Usuario {
     private int edad;
     
 
-    public Usuario(int id, String nombre, String email, String password, int edad) {
+    public Usuario(int id, String email, String password, String nombre, int edad) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -30,7 +30,7 @@ public class Usuario {
         this.edad = edad;
     }
     
-    public Usuario(String nombre, String email, String password, int edad) {
+    public Usuario(String email, String password, String nombre, int edad) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;

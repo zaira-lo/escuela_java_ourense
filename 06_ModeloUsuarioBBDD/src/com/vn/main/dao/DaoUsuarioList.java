@@ -5,6 +5,9 @@
  */
 package com.vn.main.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,6 +18,8 @@ import java.util.regex.Pattern;
  * @author Equipo 13
  */
 public class DaoUsuarioList implements IDaoUsuario {
+    public static final String urldb= "jdbc:derby://localhost:1527/db_usuarios", user= "root", pwd= "root";
+    private Connection con;
 
     private List<Usuario> listaUsuario;
 
@@ -24,11 +29,26 @@ public class DaoUsuarioList implements IDaoUsuario {
 
     @Override
     public Usuario crear(Usuario nuevoUsuario) throws Exception {
+
         listaUsuario.add(nuevoUsuario);
         return nuevoUsuario;
     }
 
+    
+    /**
+     * Crear usuarios, para ello validamos primero que no haya ningun parámetro vacío,
+     * luego comprobar que el email es único
+     * por último validar email y nombre por expresiones regulares
+     * 
+     * @param email
+     * @param password
+     * @param nombre
+     * @param edad
+     * @return
+     * @throws Exception 
+     */
     public Usuario crear(String email, String password, String nombre, int edad) throws Exception {
+
         Pattern patternEmail = Pattern
                 .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -76,6 +96,13 @@ public class DaoUsuarioList implements IDaoUsuario {
         return null;
     }
 
+    /**
+     * 
+     * @param id
+     * @param usuarioDatosNuevo
+     * @return
+     * @throws Exception 
+     */
     @Override
     public Usuario modificar(int id, Usuario usuarioDatosNuevo) throws Exception {
         Usuario usuarioAmodificar = listaUsuario.get(id);
@@ -92,7 +119,6 @@ public class DaoUsuarioList implements IDaoUsuario {
     }
 
     public void eliminar(String email) {
-
         this.listaUsuario.remove(email);
     }
 
