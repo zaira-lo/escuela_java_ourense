@@ -18,6 +18,6 @@ public interface IGenericDao<T> {
     T modificar(int index, T objConDatosNuevo)throws Exception;
     
     void eliminar(int index);
-    void eliminar(T objConDatosNuevo);
+
     
 }  

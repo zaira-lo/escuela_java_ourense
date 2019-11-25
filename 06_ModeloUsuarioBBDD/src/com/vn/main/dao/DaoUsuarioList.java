@@ -71,9 +71,5 @@ public class DaoUsuarioList implements IDaoUsuario {
         this.listaUsuario.remove(email);
     }
 
-    @Override
-    public void eliminar(Usuario objConDatosNuevo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

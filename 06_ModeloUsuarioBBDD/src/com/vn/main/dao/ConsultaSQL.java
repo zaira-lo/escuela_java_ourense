@@ -26,7 +26,7 @@ public class ConsultaSQL {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
             } catch (Exception ex) {
-                System.out.println("No se ha cargado DerbyDB");
+                System.out.println("No se ha cargado DerbyDB, excepcion: "+ ex);
             }
      }
        
@@ -61,7 +61,7 @@ public class ConsultaSQL {
                 }
                 return datos;
             } catch (SQLException ex) {
-                 System.out.println("No se ha cargado DerbyDB: " + ex);
+                 System.out.println("No se ha cargado DerbyDB, excepcion: " + ex);
             }
         return null;
     }
