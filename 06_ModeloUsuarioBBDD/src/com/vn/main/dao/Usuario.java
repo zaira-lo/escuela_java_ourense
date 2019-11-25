@@ -21,13 +21,6 @@ public class Usuario {
     
     private int edad;
     
-     public Usuario(String email, String password, String nombre, int edad) {
-        this.edad = edad;
-        this.password= password;
-        this.email = email;
-        this.nombre = nombre;
-        this.edad = edad;
-    }
 
     public Usuario(int id, String nombre, String email, String password, int edad) {
         this.id = id;
@@ -123,5 +116,7 @@ public class Usuario {
     public int getId() {
         return id;
     }
+
+    
 
 }

@@ -52,7 +52,8 @@ public class ConsultaSQL {
                     String email = resultado.getString("email");//2
                     String password = resultado.getString("password");
                     int edad = resultado.getInt("edad");
-                    Usuario us = new Usuario(email, password, nombre, edad);
+                    int id = resultado.getInt("id");
+                    Usuario us = new Usuario(id, nombre, email, password, edad);
                     us.setEdad(edad);
                     us.setEmail(email);
                     us.setNombre(nombre);
