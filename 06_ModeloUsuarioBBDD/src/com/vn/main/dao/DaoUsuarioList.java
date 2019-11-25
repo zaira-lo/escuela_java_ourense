@@ -34,16 +34,22 @@ public class DaoUsuarioList implements IDaoUsuario {
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Pattern patternNombre = Pattern
                 .compile("\"^[A-Z][a-z]+$\"");
-        if(email != null && password.length()>4 && nombre != null && edad > 12){
+        if (email != null && password.length() > 4 && nombre != null && edad > 12) {
             Matcher matherEmail = patternEmail.matcher(email);
             Matcher matherNombre = patternNombre.matcher(nombre);
-             if (matherEmail.find() == false) {
-                 return null;
-             }else if(matherNombre.find()==false){
-                 return null;
-             }else{
-                 crear(new Usuario(email, password, nombre, edad));
-             }   
+            for (Usuario usuario : listaUsuario) {
+                if (email == usuario.getEmail()) {
+                    return null;
+                } else {
+                    if (matherEmail.find() == false) {
+                        return null;
+                    } else if (matherNombre.find() == false) {
+                        return null;
+                    } else {
+                        crear(new Usuario(email, password, nombre, edad));
+                    }
+                }
+            }
         }
         return null;
     }
@@ -86,9 +92,8 @@ public class DaoUsuarioList implements IDaoUsuario {
     }
 
     public void eliminar(String email) {
-        
+
         this.listaUsuario.remove(email);
     }
-
 
 }

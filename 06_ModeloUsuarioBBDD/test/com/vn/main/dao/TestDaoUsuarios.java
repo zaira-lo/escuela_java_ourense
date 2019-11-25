@@ -23,8 +23,8 @@ public class TestDaoUsuarios {
     
 
      @Test
-     public void testUsuariosInvalidos() {
-         
+     public void testUsuariosInvalidos() throws Exception {
+         crearUsuiariosValidos(new DaoUsuarioList());
      }
      
      void crearUsuiariosInvalidos(IDaoUsuario daoUsuario) throws Exception{
@@ -44,6 +44,6 @@ public class TestDaoUsuarios {
          daoUsuario.crear(new Usuario("martina@martina.es","1234", "Martina", 28 ));
          daoUsuario.crear(new Usuario("gregorio@gregorio.es","1234", "Gregorio", 83 ));
          
-         assertEquals("zaira@zaira.es", conSQL.leerTabla("zaira@zaira.es").get(0).getEmail());
+         assertEquals("zaira@zaira.es", daoUsuario.obtenerPorEmail("zaira@zaira.es"));
      }
 }
