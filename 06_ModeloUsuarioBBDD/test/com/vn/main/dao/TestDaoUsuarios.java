@@ -36,12 +36,14 @@ public class TestDaoUsuarios {
      }
      
      void crearUsuiariosValidos(IDaoUsuario daoUsuario) throws Exception{
+         ConsultaSQL conSQL = new ConsultaSQL();
+         
          daoUsuario.crear(new Usuario("zaira@zaira.es","1234", "Zaira", 28 ));
          daoUsuario.crear(new Usuario("aurea@aurea.es","1234", "Aurea", 26 ));
          daoUsuario.crear(new Usuario("alo@alo.es", "1234", "Álvaro", 28 ));
          daoUsuario.crear(new Usuario("martina@martina.es","1234", "Martina", 28 ));
          daoUsuario.crear(new Usuario("gregorio@gregorio.es","1234", "Gregorio", 83 ));
          
-         //assertEquals("Nombre de Prueba", conSQL.leerTabla("Nombre de Prueba").get(0).getNombre());
+         assertEquals("zaira@zaira.es", conSQL.leerTabla("zaira@zaira.es").get(0).getEmail());
      }
 }
