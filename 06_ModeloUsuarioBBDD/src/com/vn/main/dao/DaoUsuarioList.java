@@ -7,6 +7,8 @@ package com.vn.main.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -26,8 +28,24 @@ public class DaoUsuarioList implements IDaoUsuario {
         return nuevoUsuario;
     }
 
-    public Usuario crear(int id, String email, String password, String nombre, int edad) throws Exception {
-        return crear(new Usuario(id, email, password, nombre, edad));
+    public Usuario crear(String email, String password, String nombre, int edad) throws Exception {
+        Pattern patternEmail = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Pattern patternNombre = Pattern
+                .compile("\"^[A-Z][a-z]+$\"");
+        if(!email.equals(null) && password.length()>4 && !nombre.equals(null) && edad > 12){
+            Matcher matherEmail = patternEmail.matcher(email);
+            Matcher matherNombre = patternNombre.matcher(nombre);
+             if (matherEmail.find() == false) {
+                 return null;
+             }else if(matherNombre.find()==false){
+                 return null;
+             }else{
+                 crear(new Usuario(email, password, nombre, edad));
+             }   
+        }
+        return null;
     }
 
     @Override
@@ -68,6 +86,7 @@ public class DaoUsuarioList implements IDaoUsuario {
     }
 
     public void eliminar(String email) {
+        
         this.listaUsuario.remove(email);
     }
 
