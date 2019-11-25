@@ -12,22 +12,22 @@ import java.util.List;
  *
  * @author Equipo 13
  */
-public class DaoUsuarioList implements IDaoUsuario{
-    
+public class DaoUsuarioList implements IDaoUsuario {
+
     private List<Usuario> listaUsuario;
-    
-    public DaoUsuarioList () {
+
+    public DaoUsuarioList() {
         listaUsuario = new ArrayList<>();
     }
 
     @Override
-    public Usuario obtenerPorEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario crear(Usuario nuevoUsuario) throws Exception {
+        listaUsuario.add(nuevoUsuario);
+        return nuevoUsuario;
     }
 
-    @Override
-    public Usuario crear(Usuario objetoNuevo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario crear(int id, String email, String password, String nombre, int edad) throws Exception {
+        return crear(new Usuario(id, email, password, nombre, edad));
     }
 
     @Override
@@ -36,18 +36,44 @@ public class DaoUsuarioList implements IDaoUsuario{
     }
 
     @Override
-    public Usuario modificar(int index, Usuario objConDatosNuevo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario obtenerPorEmail(String email) {
+        for (Usuario usuario : listaUsuario) {
+            if (usuario.getEmail().equals(email)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    public Usuario obtenerTodos(int id, String email, String password, String nombre, int edad) {
+        for (Usuario usuario : listaUsuario) {
+            return usuario;
+        }
+        return null;
     }
 
     @Override
-    public void eliminar(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario modificar(int id, Usuario usuarioDatosNuevo) throws Exception {
+        Usuario usuarioAmodificar = listaUsuario.get(id);
+        usuarioAmodificar.setEdad(usuarioDatosNuevo.getEdad());
+        usuarioAmodificar.setEmail(usuarioDatosNuevo.getEmail());
+        usuarioAmodificar.setNombre(usuarioDatosNuevo.getNombre());
+        usuarioAmodificar.setPassword(usuarioDatosNuevo.getPassword());
+        return usuarioAmodificar;
+    }
+
+    @Override
+    public void eliminar(int id) {
+        this.listaUsuario.remove(id);
+    }
+
+    public void eliminar(String email) {
+        this.listaUsuario.remove(email);
     }
 
     @Override
     public void eliminar(Usuario objConDatosNuevo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
