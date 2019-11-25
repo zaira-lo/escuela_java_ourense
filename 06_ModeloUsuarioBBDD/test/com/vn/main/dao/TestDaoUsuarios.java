@@ -17,33 +17,41 @@ import static org.junit.Assert.*;
  * @author pc
  */
 public class TestDaoUsuarios {
+    private ServicioUsuarios srvUsu;
     
     public TestDaoUsuarios() {
+        srvUsu = new ServicioUsuarios();
     }
     
-
-     @Test
-     public void testUsuariosInvalidos() throws Exception {
-         crearUsuariosValidos(new DaoUsuarioList());
-     }
-     
-     void crearUsuiariosInvalidos(IDaoUsuario daoUsuario) throws Exception{
-         daoUsuario.crear(new Usuario("@zaira.es","1234", "Zaira", 28 ));
-         daoUsuario.crear(new Usuario("zaira@zaira.es","", "Zaira", 28 ));
-         daoUsuario.crear(new Usuario("zaira@zaira.es", "1234", "", 28 ));
-         daoUsuario.crear(new Usuario("","1234", "Zaira", 28 ));
-         daoUsuario.crear(new Usuario("@zaira.es","1234", "Zaira", 0 ));
-     }
-     
-     void crearUsuariosValidos(IDaoUsuario daoUsuario) throws Exception{
-         ConsultaSQL conSQL = new ConsultaSQL();
-         
-         daoUsuario.crear(new Usuario("zaira@zaira.es","1234", "Zaira", 28 ));
-         daoUsuario.crear(new Usuario("aurea@aurea.es","1234", "Aurea", 26 ));
-         daoUsuario.crear(new Usuario("alo@alo.es", "1234", "Álvaro", 28 ));
-         daoUsuario.crear(new Usuario("martina@martina.es","1234", "Martina", 28 ));
-         daoUsuario.crear(new Usuario("gregorio@gregorio.es","1234", "Gregorio", 83 ));
-         
-         assertEquals("zaira@zaira.es", daoUsuario.obtenerPorEmail("zaira@zaira.es").getEmail());
-     }
+    @Test
+    public void crearUsuariosInvalidos() throws Exception {
+        Usuario u1 = srvUsu.crear(null, "", null, "");
+        Usuario u2 = srvUsu.crear("", "a1", "Nom", "");
+        Usuario u3 = srvUsu.crear("b@a.a", "a1", "", "");
+        Usuario u4 = srvUsu.crear("b@a.a", "1234", "Nom 2", "SIN EDAD");
+        Usuario u5 = srvUsu.crear("b@a.a", "1234", "Nom 2", "10");
+        assertNull(u1);
+        assertNull(u2);
+        assertNull(u3);
+        assertNull(u4);
+        assertNull(u5);
+        assertNull(srvUsu.leerUno("b@a.a"));
+    }
+    @Test
+    public void crearUsuariosValidos() throws Exception {
+        srvUsu.crear("a@a.a", "1234", "Nom 1", "20");
+        srvUsu.crear("a@a.a2", "1234", "Nom 2", "30");
+        
+        assertTrue(srvUsu.leerUno("a@a.a").getId() > 0);
+        assertEquals("Nom 2", srvUsu.leerUno("a@a.a2").getNombre());
+    }
+    @Test
+    public void modificarUsuariosInvalidos() {
+    }
+    @Test
+    public void modificarUsuariosValidos() {
+    }
+    @Test
+    public void eliminarUsuarios() {
+    }
 }

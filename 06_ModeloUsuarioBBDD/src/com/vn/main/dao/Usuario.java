@@ -13,11 +13,11 @@ public class Usuario {
     
     private int id;
     
-    private String nombre;
-    
     private String email;
     
     private String password;
+    
+    private String nombre;
     
     private int edad;
     
@@ -29,15 +29,7 @@ public class Usuario {
         this.password = password;
         this.edad = edad;
     }
-    
-    public Usuario(String email, String password, String nombre, int edad) {
-        this.nombre = nombre;
-        this.email = email;
-        this.password = password;
-        this.edad = edad;
-    }
-    
-    
+   
 
     /**
      * Get the value of edad

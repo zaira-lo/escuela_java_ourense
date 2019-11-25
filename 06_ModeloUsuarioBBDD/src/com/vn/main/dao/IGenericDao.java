@@ -13,11 +13,12 @@ package com.vn.main.dao;
 public interface IGenericDao<T> {
     public abstract T crear(T objetoNuevo) throws Exception;
     
-    T obtenerPorIndice(int index);
+    T obtenerPorId(int id);
+    T obtenerTodos();
     
-    T modificar(int index, T objConDatosNuevo)throws Exception;
+    T modificar( T objConDatosNuevo)throws Exception;
     
-    void eliminar(int index);
+    boolean eliminar(int id);
 
     
 }  
