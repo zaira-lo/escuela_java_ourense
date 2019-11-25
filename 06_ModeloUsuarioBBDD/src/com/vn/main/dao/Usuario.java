@@ -30,6 +30,13 @@ public class Usuario {
         this.edad = edad;
     }
     
+    public Usuario(String nombre, String email, String password, int edad) {
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.edad = edad;
+    }
+    
     
 
     /**
