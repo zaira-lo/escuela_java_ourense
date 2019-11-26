@@ -29,6 +29,19 @@ public class Usuario {
         this.edad = edad;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if( super.equals(obj)){
+            return true;
+        } else{
+            Usuario usu = (Usuario) obj;
+            return usu.getId() == this.getId() &&
+                    usu.getEmail()== this.getEmail();
+        }
+    }
+    
+    
+
     /**
      * Get the value of edad
      *

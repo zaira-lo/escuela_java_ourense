@@ -22,9 +22,8 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
 
     @Override
     public Usuario crear(Usuario nuevoUsu) throws Exception {
-        Connection conex = ConexionDerbyDB.obtenerConexion();
-        try {
-
+        try(Connection conex = ConexionDerbyDB.obtenerConexion()){  
+       
             String sqlQuery = "INSERT INTO usuario (email, password, nombre, edad) VALUES (?, ?, ?, ?)";
             PreparedStatement sentenciaSQL = conex.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, nuevoUsu.getEmail());
@@ -32,24 +31,14 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
             sentenciaSQL.setString(3, nuevoUsu.getNombre());
             sentenciaSQL.setInt(4, nuevoUsu.getEdad());
             sentenciaSQL.executeUpdate();
-            
-            conex.close();            
+                      
             nuevoUsu.setId(obtenerPorEmail(nuevoUsu.getEmail()).getId());
             return nuevoUsu;
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {            
-            try {
-                conex.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return null;
+        }   
     }
 
     @Override
-    public Usuario obtenerPorId(int id) {
+    public Usuario obtenerPorId(int id) throws ClassNotFoundException, SQLException {
         try (Connection conex = ConexionDerbyDB.obtenerConexion()) {
             String sqlQuery = "SELECT id, email, password, nombre, edad  FROM usuario WHERE id = ? ";
             
@@ -65,13 +54,11 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
                         resultado.getInt(5));
                 return usu;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return null;
-    }
+    }    
     
-    public Usuario obtenerPorEmail(String email) {
+    public Usuario obtenerPorEmail(String email) throws ClassNotFoundException, SQLException{
         
         try (Connection conex = ConexionDerbyDB.obtenerConexion()) {
             String sqlQuery = "SELECT id, email, password, nombre, edad  FROM usuario WHERE email = ? ";
@@ -88,34 +75,31 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
                         resultado.getInt(5));
                 return usu;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return null;
     }
-
+    
     @Override
-    public ArrayList<Usuario> obtenerTodos() {
+    public ArrayList<Usuario> obtenerTodos() throws ClassNotFoundException, SQLException {
          
         try (Connection conex = ConexionDerbyDB.obtenerConexion()) {
-            String sqlQuery = "SELECT id, email, password, nombre, edad  FROM usuario WHERE nombre = ? ";
+            String sqlQuery = "SELECT id, email, password, nombre, edad  FROM usuario  ";
             
             PreparedStatement sentenciaSQL = conex.prepareStatement(sqlQuery);  
             ResultSet resultado = sentenciaSQL.executeQuery();
             ArrayList<Usuario> lista = new ArrayList<>();
-            if (resultado.next()) {
+            while (resultado.next()) {
                 Usuario usu = new Usuario(
                         resultado.getInt(1), 
                         resultado.getString(2), 
                         resultado.getString(3),
                         resultado.getString(4),
                         resultado.getInt(5));
-                return lista;
+                lista.add(usu);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+            return lista;
+        } 
+
     }
 
     @Override
@@ -130,24 +114,20 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
             sentenciaSQL.setInt(4, usuMod.getEdad());
             sentenciaSQL.setInt(5, usuMod.getId());
             sentenciaSQL.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return null;
     }
 
     @Override
-    public boolean eliminar(int id) {
+    public boolean eliminar(int id) throws ClassNotFoundException, SQLException {
         try (Connection conex = ConexionDerbyDB.obtenerConexion()) {
             String sqlQuery = "DELETE FROM usuario WHERE id=?";
             PreparedStatement sentenciaSQL = conex.prepareStatement(sqlQuery);
             sentenciaSQL.setInt(1, id);
             sentenciaSQL.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
+        } 
+  
     }
     
 }

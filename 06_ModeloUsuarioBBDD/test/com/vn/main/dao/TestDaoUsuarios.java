@@ -124,11 +124,11 @@ public class TestDaoUsuarios {
     }
     @Test
     public void eliminarUsuarios() throws Exception {
-        Usuario u1 = srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20");
-        Usuario u2 = srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30");
-        Usuario u3 = srvUsu.crear("german@german.com", "5678", "German", "35");
-        Usuario u4 = srvUsu.crear("nombre@nombre.com", "8765", "Nombre", "67");
-        Usuario u5 = srvUsu.crear("pepito@pepito.com", "9876", "Pepito", "55");
+        Usuario u1 = srvUsu.crear("zaira3@zaira.a", "1234", "Zaira", "20");
+        Usuario u2 = srvUsu.crear("aurea3@aurea.com", "4321", "Aurea", "30");
+        Usuario u3 = srvUsu.crear("german3@german.com", "5678", "German", "35");
+        Usuario u4 = srvUsu.crear("nombre3@nombre.com", "8765", "Nombre", "67");
+        Usuario u5 = srvUsu.crear("pepito3@pepito.com", "9876", "Pepito", "55");
         
         boolean b1 = srvUsu.eliminar(u1.getId());        
         boolean b2 = srvUsu.eliminar(u2.getId());        
@@ -136,24 +136,28 @@ public class TestDaoUsuarios {
         boolean b4 = srvUsu.eliminar(u4.getId());
         boolean b5 = srvUsu.eliminar(u5.getId());
         
-        assertNull(srvUsu.leerUno("zaira@zaira.a"));
+        assertNull(srvUsu.leerUno("zaira3@zaira.a"));
         assertNull(srvUsu.leerUno(u2.getId()));
-        assertNull(srvUsu.leerUno("aurea@aurea.com"));
+        assertNull(srvUsu.leerUno("aurea3@aurea.com"));
         assertNull(srvUsu.leerUno(u4.getId()));
         assertTrue(b1 && b2 && b3 && b4 && b5);
     }
     
-//    @Test
-//    public void listarTodos() throws Exception{
-//        ArrayList<Usuario> lista = srvUsu.leerTodos();
-//        lista.add(srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20"));
-//        lista.add(srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30"));
-//        lista.add(srvUsu.crear("german@german.com", "5678", "German", "35"));
-//        
-//        for (Usuario usuario : lista) {
-//            assertEquals(usuario.getNombre(), 
-//                    srvUsu.leerUno(usuario.getId()).getNombre());
-//            srvUsu.eliminar(usuario.getId());
-//        }
-//    }
+    @Test
+    public void listarTodos() throws Exception{
+        ArrayList<Usuario> listaCreados = new ArrayList<>();
+        listaCreados.add(srvUsu.crear("zaira7@zaira.a", "1234", "Zaira", "20"));
+        listaCreados.add(srvUsu.crear("aurea7@aurea.com", "4321", "Aurea", "30"));
+        listaCreados.add(srvUsu.crear("german7@german.com", "5678", "German", "35"));
+        
+        ArrayList<Usuario> listaTotal = srvUsu.leerTodos();
+        for (Usuario usuario1 : listaTotal) {
+           if(usuario1 != null && listaTotal.contains(usuario1)){
+                srvUsu.eliminar(usuario1.getId());
+            }else{
+               fail("No se ha añadido o no se ha encontrado en listaTotal");
+           }
+        }
+        
+    }
 }

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public interface IGenericDao<T> {
     public abstract T crear(T objetoNuevo) throws Exception;  
-    T obtenerPorId(int id);
-    ArrayList<T> obtenerTodos(); 
+    T obtenerPorId(int id)throws Exception; 
+    ArrayList<T> obtenerTodos()throws Exception; 
     T modificar( T objConDatosNuevo)throws Exception;   
-    boolean eliminar(int id);
+    boolean eliminar(int id)throws Exception; 
 }  
