@@ -42,7 +42,7 @@ public class ServicioUsuarios {
         if (email != null && password != null && nombre != null && edad != null) {
             if (email.length() >= 3
                     && nombre.length() > 1
-                    && password.length() >= 4
+                    && 3 < password.length()
                     && !"".equals(edad)) {
                 String regexEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
                 Pattern patternEmail = Pattern.compile(regexEmail);

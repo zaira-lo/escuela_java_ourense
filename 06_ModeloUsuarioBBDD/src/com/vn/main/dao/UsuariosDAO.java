@@ -33,7 +33,9 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
             sentenciaSQL.setInt(4, nuevoUsu.getEdad());
             sentenciaSQL.executeUpdate();
             
-            conex.close();
+            conex.close();            
+            nuevoUsu.setId(obtenerPorEmail(nuevoUsu.getEmail()).getId());
+            return nuevoUsu;
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {            
@@ -48,14 +50,32 @@ public class UsuariosDAO implements IGenericDao<Usuario>{
 
     @Override
     public Usuario obtenerPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection conex = ConexionDerbyDB.obtenerConexion()) {
+            String sqlQuery = "SELECT id, email, password, nombre, edad  FROM usuario WHERE id = ? ";
+            
+            PreparedStatement sentenciaSQL = conex.prepareStatement(sqlQuery);
+            sentenciaSQL.setInt(1, id);
+            ResultSet resultado = sentenciaSQL.executeQuery();
+            if (resultado.next()) {
+                Usuario usu = new Usuario(
+                        resultado.getInt(1),
+                        resultado.getString(2),
+                        resultado.getString(3),
+                        resultado.getString(4),
+                        resultado.getInt(5));
+                return usu;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public Usuario obtenerPorEmail(String email) {
         
         try (Connection conex = ConexionDerbyDB.obtenerConexion()) {
             String sqlQuery = "SELECT id, email, password, nombre, edad  FROM usuario WHERE email = ? ";
-            // Sentencia preparada para evitar SQL injection
+            
             PreparedStatement sentenciaSQL = conex.prepareStatement(sqlQuery);  
             sentenciaSQL.setString(1, email);
             ResultSet resultado = sentenciaSQL.executeQuery();

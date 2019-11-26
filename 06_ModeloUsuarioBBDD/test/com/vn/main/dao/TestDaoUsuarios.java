@@ -39,19 +39,107 @@ public class TestDaoUsuarios {
     }
     @Test
     public void crearUsuariosValidos() throws Exception {
-        srvUsu.crear("a@a.a", "1234", "Nom 1", "20");
-        srvUsu.crear("a@a.a2", "1234", "Nom 2", "30");
+        Usuario u1 = srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20");
+        Usuario u2 = srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30");
+        Usuario u3 = srvUsu.crear("german@german.com", "5678", "German", "35");
+        Usuario u4 = srvUsu.crear("nombre@nombre.com", "8765", "Nombre", "67");
+        Usuario u5 = srvUsu.crear("pepito@pepito.com", "9876", "Pepito", "55");
         
-        assertTrue(srvUsu.leerUno("a@a.a").getId() > 0);
-        assertEquals("Nom 2", srvUsu.leerUno("a@a.a2").getNombre());
+        assertTrue(srvUsu.leerUno("zaira@zaira.a").getId() > 0);
+        assertEquals("Aurea", srvUsu.leerUno("aurea@aurea.com").getNombre());
+        assertEquals("German", srvUsu.leerUno(u3.getId()).getNombre());
+        assertEquals("8765", srvUsu.leerUno("nombre@nombre.com").getPassword());
+        assertEquals(55, srvUsu.leerUno("pepito@pepito.com").getEdad());
+        
+        srvUsu.eliminar(u1.getId());
+        srvUsu.eliminar(u2.getId());
+        srvUsu.eliminar(u3.getId());
+        srvUsu.eliminar(u4.getId());
+        srvUsu.eliminar(u5.getId());
     }
     @Test
-    public void modificarUsuariosInvalidos() {
+    public void modificarUsuariosInvalidos() throws Exception {
+        Usuario u1 = srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20");
+        Usuario u2 = srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30");
+        Usuario u3 = srvUsu.crear("german@german.com", "5678", "German", "35");
+        Usuario u4 = srvUsu.crear("nombre@nombre.com", "8765", "Nombre", "67");
+        Usuario u5 = srvUsu.crear("pepito@pepito.com", "9876", "Pepito", "55");
+        
+        srvUsu.modificar(u1.getId(), u1.getEmail(), u1.getPassword(), u1.getNombre(), "10");
+        assertEquals(20, srvUsu.leerUno("zaira@zaira.a").getEdad());
+        
+        srvUsu.modificar(u2.getId(), "aureamene.es", u2.getPassword(), u2.getNombre(), "26");
+        assertEquals(u2.getId(), srvUsu.leerUno("aurea@aurea.com").getId());
+        
+        srvUsu.modificar(u3.getId(), u3.getEmail(), "abc", u3.getNombre(), "40");
+        assertEquals("5678", srvUsu.leerUno(u3.getId()).getPassword());
+        
+        srvUsu.modificar(u4.getId(),  u4.getEmail(), u4.getPassword(), "t", "60");
+        assertEquals("German", srvUsu.leerUno("german@german.com").getNombre());
+          
+        srvUsu.modificar(u5.getId(), "german@german.com", u5.getPassword(), u5.getNombre(), "28");
+        assertEquals(u5.getId(), srvUsu.leerUno("pepito@pepito.com").getId());
+        
+        srvUsu.eliminar(u1.getId());
+        srvUsu.eliminar(u2.getId());
+        srvUsu.eliminar(u3.getId());
+        srvUsu.eliminar(u4.getId());
+        srvUsu.eliminar(u5.getId());
+    }
+    
+    @Test
+    public void modificarUsuariosValidos() throws Exception {
+        Usuario u1 = srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20");
+        Usuario u2 = srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30");
+        Usuario u3 = srvUsu.crear("german@german.com", "5678", "German", "35");
+        Usuario u4 = srvUsu.crear("nombre@nombre.com", "8765", "Nombre", "67");
+        Usuario u5 = srvUsu.crear("pepito@pepito.com", "9876", "Pepito", "55");
+        
+        srvUsu.modificar(u1.getId(), u1.getEmail(), u1.getPassword(), u1.getNombre(), "28");
+        assertEquals(28, srvUsu.leerUno("zaira@zaira.a").getEdad());
+        
+        srvUsu.modificar(u2.getId(), "aurea@mene.es", u2.getPassword(), u2.getNombre(), "26");
+        assertEquals(u2.getId(), srvUsu.leerUno("aurea@mene.es").getId());
+        assertEquals(26, srvUsu.leerUno("aurea@mene.es").getEdad());
+        
+        srvUsu.modificar(u3.getId(), "german@caballero", "abcd", "German Caballero", "40");
+        assertEquals("abcd", srvUsu.leerUno(u3.getId()).getPassword());
+        assertEquals("German Caballero", srvUsu.leerUno("german@caballero").getNombre());
+        assertEquals(40, srvUsu.leerUno("german@caballero").getEdad());
+        
+        srvUsu.modificar(u4.getId(),  u4.getEmail(), "33345", u4.getNombre(), "60");
+        assertEquals("33345", srvUsu.leerUno(u4.getId()).getPassword());
+        assertEquals(60, srvUsu.leerUno("nombre@nombre.com").getEdad());
+        
+        
+        srvUsu.modificar(u5.getId(), u5.getEmail(), u5.getPassword(), "Pepito Grillo", "28");
+        assertEquals("Pepito Grillo", srvUsu.leerUno("pepito@pepito.com").getNombre());
+        assertEquals(28, srvUsu.leerUno("pepito@pepito.com").getEdad());
+        
+        srvUsu.eliminar(u1.getId());
+        srvUsu.eliminar(u2.getId());
+        srvUsu.eliminar(u3.getId());
+        srvUsu.eliminar(u4.getId());
+        srvUsu.eliminar(u5.getId());
     }
     @Test
-    public void modificarUsuariosValidos() {
-    }
-    @Test
-    public void eliminarUsuarios() {
+    public void eliminarUsuarios() throws Exception {
+        Usuario u1 = srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20");
+        Usuario u2 = srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30");
+        Usuario u3 = srvUsu.crear("german@german.com", "5678", "German", "35");
+        Usuario u4 = srvUsu.crear("nombre@nombre.com", "8765", "Nombre", "67");
+        Usuario u5 = srvUsu.crear("pepito@pepito.com", "9876", "Pepito", "55");
+        
+        boolean b1 = srvUsu.eliminar(u1.getId());        
+        boolean b2 = srvUsu.eliminar(u2.getId());        
+        boolean b3 = srvUsu.eliminar(u3.getId());
+        boolean b4 = srvUsu.eliminar(u4.getId());
+        boolean b5 = srvUsu.eliminar(u5.getId());
+        
+        assertNull(srvUsu.leerUno("zaira@zaira.a"));
+        assertNull(srvUsu.leerUno(u2.getId()));
+        assertNull(srvUsu.leerUno("aurea@aurea.com"));
+        assertNull(srvUsu.leerUno(u4.getId()));
+        assertTrue(b1 && b2 && b3 && b4 && b5);
     }
 }
