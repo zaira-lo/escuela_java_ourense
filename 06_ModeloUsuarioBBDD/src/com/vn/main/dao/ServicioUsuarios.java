@@ -106,5 +106,21 @@ public class ServicioUsuarios {
     public Usuario leerUno(String email) {
         return daoUsu.obtenerPorEmail(email);
     }
+    
+    public Usuario modificar(int id, String email, String password, String nombre, String edad) throws Exception{
+        Usuario usuMod = crearUsuarioValido(email, password, nombre, edad);
+        if (usuMod != null) {
+            usuMod.setId(id);
+            usuMod = daoUsu.modificar(usuMod);
+            return usuMod;
+        }
+        return null;
+    }
+    
+    public boolean eliminar(int id) {
+        return daoUsu.eliminar(id);
+    }
+    
+    
 
 }

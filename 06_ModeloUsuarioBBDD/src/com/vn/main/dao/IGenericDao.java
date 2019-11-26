@@ -5,6 +5,8 @@
  */
 package com.vn.main.dao;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Equipo 13
@@ -14,7 +16,7 @@ public interface IGenericDao<T> {
     public abstract T crear(T objetoNuevo) throws Exception;
     
     T obtenerPorId(int id);
-    T obtenerTodos();
+    ArrayList<T> obtenerTodos();
     
     T modificar( T objConDatosNuevo)throws Exception;
     

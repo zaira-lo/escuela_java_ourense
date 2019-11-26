@@ -10,17 +10,16 @@ package com.vn.main.dao;
  * @author pc
  */
 public class Usuario {
-    
+
     private int id;
-    
+
     private String email;
-    
+
     private String password;
-    
+
     private String nombre;
-    
+
     private int edad;
-    
 
     public Usuario(int id, String email, String password, String nombre, int edad) {
         this.id = id;
@@ -29,7 +28,6 @@ public class Usuario {
         this.password = password;
         this.edad = edad;
     }
-   
 
     /**
      * Get the value of edad
@@ -49,7 +47,6 @@ public class Usuario {
         this.edad = edad;
     }
 
-
     /**
      * Get the value of password
      *
@@ -67,7 +64,6 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     /**
      * Get the value of email
@@ -87,7 +83,6 @@ public class Usuario {
         this.email = email;
     }
 
-
     /**
      * Get the value of nombre
      *
@@ -106,7 +101,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-
     /**
      * Get the value of id
      *
@@ -116,6 +110,8 @@ public class Usuario {
         return id;
     }
 
-    
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }
