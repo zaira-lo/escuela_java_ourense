@@ -142,4 +142,9 @@ public class TestDaoUsuarios {
         assertNull(srvUsu.leerUno(u4.getId()));
         assertTrue(b1 && b2 && b3 && b4 && b5);
     }
+    
+    @Test
+    public void listarTodos(){
+        ArrayList<Usuario> lista = srvUsu.leerTodos();
+    }
 }

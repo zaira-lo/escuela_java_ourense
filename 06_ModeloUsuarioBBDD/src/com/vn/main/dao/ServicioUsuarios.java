@@ -121,6 +121,10 @@ public class ServicioUsuarios {
         return daoUsu.eliminar(id);
     }
     
+    public ArrayList<Usuario> leerTodos(){
+        return daoUsu.obtenerTodos();
+    }
+    
     
 
 }
