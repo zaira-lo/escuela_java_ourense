@@ -143,8 +143,17 @@ public class TestDaoUsuarios {
         assertTrue(b1 && b2 && b3 && b4 && b5);
     }
     
-    @Test
-    public void listarTodos(){
-        ArrayList<Usuario> lista = srvUsu.leerTodos();
-    }
+//    @Test
+//    public void listarTodos() throws Exception{
+//        ArrayList<Usuario> lista = srvUsu.leerTodos();
+//        lista.add(srvUsu.crear("zaira@zaira.a", "1234", "Zaira", "20"));
+//        lista.add(srvUsu.crear("aurea@aurea.com", "4321", "Aurea", "30"));
+//        lista.add(srvUsu.crear("german@german.com", "5678", "German", "35"));
+//        
+//        for (Usuario usuario : lista) {
+//            assertEquals(usuario.getNombre(), 
+//                    srvUsu.leerUno(usuario.getId()).getNombre());
+//            srvUsu.eliminar(usuario.getId());
+//        }
+//    }
 }
