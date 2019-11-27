@@ -120,13 +120,13 @@ public class ServicioUsuarios {
         return null;
     }
 
-    public Usuario leerUno(int id) {
+    public Usuario leerUno(int id){
         try {
             return daoUsu.obtenerPorId(id);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("leerUno id: " + ex.getMessage());
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("leerUno id: " + ex.getMessage());
         }
@@ -139,7 +139,7 @@ public class ServicioUsuarios {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("leerUno email: " +ex.getMessage());
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("leerUno email: " +ex.getMessage());
         }
@@ -167,7 +167,7 @@ public class ServicioUsuarios {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("eliminar: " +ex.getMessage());
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("eliminar: " +ex.getMessage());
         }
@@ -180,7 +180,7 @@ public class ServicioUsuarios {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("leerTodos: " + ex.getMessage());
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("leerTodos: " + ex.getMessage());
         }
