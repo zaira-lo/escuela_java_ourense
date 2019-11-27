@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vn.appusuarios.modelo;
+package com.vn.appusuarios.modelo.test;
 
 import com.vn.appusuarios.modelo.logica.ServicioUsuarios;
+import com.vn.appusuarios.modelo.Usuario;
 import com.vn.appusuarios.modelo.Usuario;
 import java.util.ArrayList;
 import java.util.List;
